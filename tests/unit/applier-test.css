@@ -1,0 +1,34 @@
+body {
+    font-family: url(jackeyfont.ttf);
+    font-size: 24;
+}
+
+Button {
+    --colors-font-color: #000;
+    --colors-font-color-disabled: #333;
+    --colors-font-color-hover: #FFF;
+    --colors-font-color-pressed: Color(0, 0, 0, 0);
+
+    --const-hseparation: 10;
+
+    --fonts-font: url(mintsoda.ttf);
+
+    --styles-normal-type: Empty;
+
+    --styles-hover-type: Flat;
+    --styles-hover-bg-color: #FFF;
+    --styles-hover-shadow-size: 5;
+}
+
+CheckBox {
+    --icons-checked: url(res://icon.png);
+}
+
+HSlider {
+    --styles-grabber-area-type: Flat;
+    --styles-grabber-area-bg-color: Color(0, 0, 0, 0);
+    --styles-grabber-area-border-width-left: 2;
+
+    --styles-grabber-area-highlight-type: Empty;
+    --styles-slider-type: Empty;
+}

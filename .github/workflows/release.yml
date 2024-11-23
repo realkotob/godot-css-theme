@@ -1,5 +1,5 @@
 name: "Push to asset lib"
-on: 
+on:
   push:
     tags:
       - "v*.*.*"
@@ -8,17 +8,23 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     name: Publish new version to asset lib
+    container:
+      image: barichello/godot-ci:4.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Unit Test
-        run: sh scripts/test.sh
-        timeout-minutes: 5
+        uses: actions/checkout@v4
+      - name: Get the version
+        id: version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: Copy over files
+        run: |
+          cp LICENSE.txt addons/godot-css-theme/LICENSE
+          cp README.md addons/godot-css-theme/README.md
       - name: Godot Asset Lib
-        uses: actions/godot-asset-lib-action@v0.3.0
+        uses: deep-entertainment/godot-asset-lib-action@v0.3.0
         env:
-          VERSION: ${GITHUB_REF/refs\/tags\//}
+          VERSION: ${{ steps.version.outputs.VERSION }}
         with:
           username: sakkaku13
           password: ${{ secrets.ASSET_STORE_PASSWORD }}
-          assetId: 4230
+          assetId: 1038
